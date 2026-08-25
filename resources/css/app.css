@@ -1,0 +1,401 @@
+/* =========================================================
+   SCHOOL MANAGEMENT SYSTEM
+   ADMINLTE 4 CUSTOM THEME
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   GLOBAL
+   --------------------------------------------------------- */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f4f6f9 !important;
+    color: #212529 !important;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR
+   --------------------------------------------------------- */
+
+.app-sidebar {
+    background-color: #212529 !important;
+    color: #ffffff !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+
+/* Sidebar wrapper */
+
+.app-sidebar .sidebar-wrapper {
+    background-color: #212529 !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR BRAND
+   --------------------------------------------------------- */
+
+.app-sidebar .brand-link {
+    background-color: #212529 !important;
+    color: #ffffff !important;
+
+    border-bottom: 1px solid #343a40 !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.app-sidebar .brand-link .brand-text {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.app-sidebar .brand-link:hover {
+    color: #ffffff !important;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR MENU
+   --------------------------------------------------------- */
+
+.app-sidebar .nav-link {
+    background-color: transparent !important;
+    color: #ffffff !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+}
+
+.app-sidebar .nav-link .nav-icon {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+.app-sidebar .nav-link .nav-arrow {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR HOVER
+   --------------------------------------------------------- */
+
+.app-sidebar .nav-link:hover {
+    background-color: #343a40 !important;
+    color: #ffffff !important;
+}
+
+.app-sidebar .nav-link:hover .nav-icon,
+.app-sidebar .nav-link:hover .nav-arrow {
+    color: #ffffff !important;
+}
+
+
+/* ---------------------------------------------------------
+   ACTIVE MENU
+   --------------------------------------------------------- */
+
+.app-sidebar .nav-link.active {
+    background-color: #0d6efd !important;
+    color: #ffffff !important;
+}
+
+.app-sidebar .nav-link.active .nav-icon,
+.app-sidebar .nav-link.active .nav-arrow {
+    color: #ffffff !important;
+}
+
+
+/* ---------------------------------------------------------
+   SUBMENU
+   --------------------------------------------------------- */
+
+.app-sidebar .nav-treeview {
+    background-color: #212529 !important;
+}
+
+.app-sidebar .nav-treeview .nav-link {
+    background-color: transparent !important;
+    color: #dee2e6 !important;
+}
+
+.app-sidebar .nav-treeview .nav-link .nav-icon {
+    color: #dee2e6 !important;
+}
+
+.app-sidebar .nav-treeview .nav-link:hover {
+    background-color: #343a40 !important;
+    color: #ffffff !important;
+}
+
+.app-sidebar .nav-treeview .nav-link:hover .nav-icon {
+    color: #ffffff !important;
+}
+
+.app-sidebar .nav-treeview .nav-link.active {
+    background-color: #0d6efd !important;
+    color: #ffffff !important;
+}
+
+.app-sidebar .nav-treeview .nav-link.active .nav-icon {
+    color: #ffffff !important;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR SECTION HEADERS
+   Example: REPORTS / ADMINISTRATION
+   --------------------------------------------------------- */
+
+.app-sidebar .nav-header {
+    color: #adb5bd !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR SCROLLBAR
+   --------------------------------------------------------- */
+
+.app-sidebar .os-scrollbar-handle {
+    background-color: #6c757d !important;
+}
+
+.app-sidebar .os-scrollbar-track {
+    background-color: #212529 !important;
+}
+
+
+/* ---------------------------------------------------------
+   NAVBAR
+   --------------------------------------------------------- */
+
+.app-header,
+.app-header.navbar {
+    background-color: #212529 !important;
+    color: #ffffff !important;
+
+    border-bottom: 1px solid #343a40 !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+
+/* Navbar links */
+
+.app-header .nav-link {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.app-header .nav-link:hover {
+    color: #ffffff !important;
+    background-color: #343a40 !important;
+}
+
+
+/* Navbar icons */
+
+.app-header .nav-link i,
+.app-header .nav-link svg {
+    color: #ffffff !important;
+}
+
+
+/* Navbar brand */
+
+.app-header .navbar-brand {
+    color: #ffffff !important;
+}
+
+
+/* Navbar buttons */
+
+.app-header button {
+    color: #ffffff !important;
+}
+
+
+/* ---------------------------------------------------------
+   SEARCH
+   --------------------------------------------------------- */
+
+.app-header input,
+.app-header .form-control {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border: 1px solid #6c757d !important;
+}
+
+.app-header input::placeholder,
+.app-header .form-control::placeholder {
+    color: #6c757d !important;
+}
+
+
+/* ---------------------------------------------------------
+   MAIN CONTENT
+   --------------------------------------------------------- */
+
+.app-main {
+    background-color: #f4f6f9 !important;
+}
+
+.app-content {
+    background-color: #f4f6f9 !important;
+}
+
+
+/* ---------------------------------------------------------
+   CONTENT HEADER
+   --------------------------------------------------------- */
+
+.app-content-header {
+    background-color: transparent !important;
+}
+
+.app-content-header h1 {
+    color: #212529 !important;
+}
+
+
+/* ---------------------------------------------------------
+   CARDS
+   --------------------------------------------------------- */
+
+.card {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+
+    border: 1px solid #dee2e6 !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+
+.card-header {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+.card-title {
+    color: #212529 !important;
+}
+
+
+/* ---------------------------------------------------------
+   FORMS
+   --------------------------------------------------------- */
+
+.form-control,
+.form-select {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border: 1px solid #ced4da !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border-color: #86b7fe !important;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15) !important;
+}
+
+label {
+    color: #212529 !important;
+}
+
+
+/* ---------------------------------------------------------
+   TABLES
+   --------------------------------------------------------- */
+
+.table {
+    color: #212529 !important;
+    background-color: #ffffff !important;
+}
+
+.table th {
+    color: #212529 !important;
+    background-color: #f8f9fa !important;
+}
+
+.table td {
+    color: #212529 !important;
+}
+
+
+/* ---------------------------------------------------------
+   REMOVE FADED / BLURRED EFFECTS
+   --------------------------------------------------------- */
+
+.app-sidebar,
+.app-sidebar *,
+.app-header,
+.app-header *,
+.sidebar-wrapper {
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   FORCE SAME THEME IN LIGHT AND DARK MODE
+   --------------------------------------------------------- */
+
+[data-bs-theme="light"] .app-sidebar,
+[data-bs-theme="dark"] .app-sidebar {
+    background-color: #212529 !important;
+}
+
+[data-bs-theme="light"] .app-header,
+[data-bs-theme="dark"] .app-header,
+[data-bs-theme="light"] .app-header.navbar,
+[data-bs-theme="dark"] .app-header.navbar {
+    background-color: #212529 !important;
+}
+
+[data-bs-theme="light"] .app-sidebar .nav-link,
+[data-bs-theme="dark"] .app-sidebar .nav-link {
+    color: #ffffff !important;
+}
+
+[data-bs-theme="light"] .app-sidebar .nav-link .nav-icon,
+[data-bs-theme="dark"] .app-sidebar .nav-link .nav-icon,
+[data-bs-theme="light"] .app-sidebar .nav-link .nav-arrow,
+[data-bs-theme="dark"] .app-sidebar .nav-link .nav-arrow {
+    color: #ffffff !important;
+}
+
+[data-bs-theme="light"] .app-header .nav-link,
+[data-bs-theme="dark"] .app-header .nav-link {
+    color: #ffffff !important;
+}

@@ -1,0 +1,274 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import "overlayscrollbars/overlayscrollbars.css";
+@import "admin-lte/dist/css/adminlte.css";
+@import "datatables.net-bs5/css/dataTables.bootstrap5.css";
+@import "select2/dist/css/select2.css";
+@import "toastr/build/toastr.css";
+
+/* School Management System — AdminLTE 4 sidebar theme */
+
+.app-sidebar {
+    --bs-secondary-bg: #172554;
+    --bs-secondary-bg-rgb: 23, 37, 84;
+    --lte-sidebar-color: #f8f9fa;
+    --lte-sidebar-hover-color: #ffffff;
+    --lte-sidebar-hover-bg: #1e3a8a;
+    --lte-sidebar-active-color: #ffffff;
+    --lte-sidebar-menu-active-color: #ffffff;
+    --lte-sidebar-menu-active-bg: #0d6efd;
+    --lte-sidebar-submenu-bg: #172554;
+    --lte-sidebar-submenu-color: #dee2e6;
+    --lte-sidebar-submenu-hover-color: #ffffff;
+    --lte-sidebar-submenu-hover-bg: #1e3a8a;
+    --lte-sidebar-submenu-active-color: #ffffff;
+    --lte-sidebar-submenu-active-bg: #0d6efd;
+    --lte-sidebar-header-color: #adb5bd;
+
+    background-color: #172554 !important;
+    color: #f8f9fa !important;
+}
+
+.app-sidebar .sidebar-brand,
+.app-sidebar .sidebar-wrapper {
+    background-color: #172554 !important;
+}
+
+.app-sidebar .brand-link,
+.app-sidebar .brand-link .brand-text {
+    color: #ffffff !important;
+}
+
+.app-sidebar .sidebar-brand {
+    border-bottom: 1px solid #29438e !important;
+}
+
+.app-sidebar .nav-link,
+.app-sidebar .nav-link .nav-icon,
+.app-sidebar .nav-link .nav-arrow {
+    color: #f8f9fa !important;
+}
+
+.app-sidebar .nav-link:hover,
+.app-sidebar .nav-link:hover .nav-icon,
+.app-sidebar .nav-link:hover .nav-arrow {
+    background-color: #1e3a8a !important;
+    color: #ffffff !important;
+}
+
+.app-sidebar .nav-link.active,
+.app-sidebar .nav-link.active .nav-icon,
+.app-sidebar .nav-link.active .nav-arrow {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+}
+
+.app-sidebar .nav-treeview {
+    background-color: #172554 !important;
+}
+
+.app-sidebar .nav-treeview .nav-link,
+.app-sidebar .nav-treeview .nav-link .nav-icon {
+    color: #dee2e6 !important;
+}
+
+.app-sidebar .nav-treeview .nav-link:hover,
+.app-sidebar .nav-treeview .nav-link:hover .nav-icon {
+    background-color: #1e3a8a !important;
+    color: #ffffff !important;
+}
+
+.app-sidebar .nav-treeview .nav-link.active,
+.app-sidebar .nav-treeview .nav-link.active .nav-icon {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+}
+
+.app-sidebar .nav-header {
+    color: #adb5bd !important;
+}
+
+.app-sidebar .os-scrollbar-handle {
+    background-color: #6c757d !important;
+}
+
+/* Keep the navbar clean and light, as configured in adminlte.php. */
+.app-header {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+}
+
+.app-header .nav-link,
+.app-header .nav-link i,
+.app-header .nav-link svg {
+    color: #212529 !important;
+}
+
+[data-bs-theme="dark"] .app-sidebar,
+[data-bs-theme="light"] .app-sidebar {
+    background-color: #172554 !important;
+}
+
+/* Admissions module visual system */
+:root {
+    --sms-navy: #172554;
+    --sms-blue: #2563eb;
+    --sms-sky: #eaf2ff;
+    --sms-slate: #64748b;
+    --sms-border: #dbe4f0;
+}
+
+.module-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    color: #ffffff;
+    background: linear-gradient(120deg, var(--sms-navy), #1e40af);
+    border-radius: .75rem;
+    box-shadow: 0 .5rem 1.25rem rgba(23, 37, 84, .18);
+}
+
+.module-page-header__eyebrow {
+    display: block;
+    margin-bottom: .25rem;
+    color: #bfdbfe;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.module-page-header h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.module-page-header p {
+    margin: .25rem 0 0;
+    color: #dbeafe;
+}
+
+.module-card {
+    overflow: hidden;
+    border: 1px solid var(--sms-border);
+    border-radius: .75rem;
+    box-shadow: 0 .35rem 1.2rem rgba(15, 23, 42, .07);
+}
+
+.module-card > .card-header {
+    min-height: 4.25rem;
+    padding: 1rem 1.25rem;
+    color: #ffffff;
+    background: var(--sms-navy);
+    border: 0;
+}
+
+.module-card .card-title {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.module-card .card-body {
+    padding: 1.5rem;
+}
+
+.module-card .btn-primary {
+    background-color: var(--sms-blue);
+    border-color: var(--sms-blue);
+}
+
+.form-section {
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    background: #f8fbff;
+    border: 1px solid var(--sms-border);
+    border-radius: .625rem;
+}
+
+.form-section__title {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin: 0 0 1rem;
+    color: var(--sms-navy);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.form-section__title i {
+    color: var(--sms-blue);
+}
+
+.form-section__hint {
+    margin: -.6rem 0 1rem 1.6rem;
+    color: var(--sms-slate);
+    font-size: .82rem;
+}
+
+.admission-form .form-label {
+    margin-bottom: .4rem;
+    color: #334155;
+    font-size: .84rem;
+    font-weight: 600;
+}
+
+.admission-form .form-control,
+.admission-form .form-select,
+.select2-container--default .select2-selection--single {
+    min-height: 2.6rem;
+    border-color: #cbd5e1;
+    border-radius: .45rem;
+}
+
+.admission-form .form-control:focus,
+.admission-form .form-select:focus,
+.select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 .2rem rgba(37, 99, 235, .12);
+}
+
+.select2-container { width: 100% !important; }
+.select2-container--default .select2-selection--single { padding: .3rem .65rem; }
+.select2-container--default .select2-selection--single .select2-selection__arrow { height: 2.5rem; }
+.select2-dropdown { border-color: #93c5fd; }
+
+.form-actions {
+    display: flex;
+    gap: .75rem;
+    justify-content: flex-end;
+    padding-top: .25rem;
+}
+
+.module-table thead th {
+    padding-top: .9rem;
+    padding-bottom: .9rem;
+    color: #ffffff;
+    background: var(--sms-navy);
+    border-color: #2b3f73;
+    font-size: .8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.module-table tbody td { vertical-align: middle; }
+.module-table tbody tr:hover { background-color: var(--sms-sky); }
+.dt-container .dt-search input, .dt-container .dt-length select { border-color: #cbd5e1; }
+
+#toast-container > div {
+    opacity: 1;
+    box-shadow: 0 .5rem 1.25rem rgba(15, 23, 42, .2);
+}
+
+@media (max-width: 575.98px) {
+    .module-page-header { align-items: flex-start; flex-direction: column; }
+    .module-card .card-body { padding: 1rem; }
+    .form-section { padding: 1rem; }
+    .form-actions { justify-content: stretch; }
+    .form-actions .btn { flex: 1; }
+}
