@@ -340,6 +340,12 @@ return [
         ],
 
         [
+            'text' => 'Roles',
+            'url' => 'roles',
+            'icon' => 'bi bi-shield-check',
+        ],
+
+        [
             'text' => 'Branches',
             'url' => 'branches',
             'icon' => 'bi bi-diagram-3-fill',

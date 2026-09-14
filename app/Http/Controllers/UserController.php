@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -18,14 +19,26 @@ class UserController extends Controller
         ]);
     }
 
-    public function create(): View
-    {
-        return view('users.create', ['branches' => Branch::where('status', true)->orderBy('name')->get()]);
-    }
+   public function create(): View
+{
+    return view('users.create', [
+        'user' => null,
+        'branches' => Branch::all(),
+        'roles' => Role::where('guard_name', 'web')->get(),
+        'userRole' => null,
+    ]);
+}
 
     public function store(Request $request): RedirectResponse
     {
-        User::create($this->validatedData($request));
+        $data = $this->validatedData($request);
+        $user = User::create($data);
+        
+        // Assign role if provided
+        if (!empty($data['role_id'])) {
+            $role = Role::findOrFail($data['role_id']);
+            $user->assignRole($role);
+        }
 
         return redirect()
             ->route('users.index')
@@ -37,14 +50,18 @@ class UserController extends Controller
         return view('users.show', compact('user'));
     }
 
-    public function edit(User $user): View
-    {
-        return view('users.edit', ['user' => $user, 'branches' => Branch::where('status', true)->orderBy('name')->get()]);
-    }
-
     public function update(Request $request, User $user): RedirectResponse
     {
-        $user->update($this->validatedData($request, $user));
+        $data = $this->validatedData($request, $user);
+        $user->update($data);
+        
+        // Update user roles
+        if (!empty($data['role_id'])) {
+            $role = Role::findOrFail($data['role_id']);
+            $user->syncRoles($role);
+        } else {
+            $user->syncRoles([]);
+        }
 
         return redirect()
             ->route('users.index')
@@ -75,7 +92,8 @@ class UserController extends Controller
                 Rule::unique('users', 'email')->ignore($user?->id),
             ],
             'password' => $passwordRules,
-            'is_admin' => ['required', 'boolean'],
+            'role_id' => ['nullable', 'integer', 'exists:roles,id'],
+            'is_admin' => ['nullable', 'boolean'],
             'branch_id' => ['required', 'integer', 'exists:branches,id'],
         ]);
 

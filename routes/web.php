@@ -6,6 +6,7 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoleController;
 
 Route::get('/login', [AuthController::class, 'create'])->middleware('guest')->name('login');
 Route::post('/login', [AuthController::class, 'store'])->middleware('guest')->name('login.store');
@@ -39,4 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('branches', BranchController::class);
 
     Route::resource('users', UserController::class);
+
+    Route::resource('roles', RoleController::class);
+    Route::post('/roles/{role}/assign-user', [RoleController::class, 'assignUserRole'])->name('roles.assignUserRole');
+    Route::post('/roles/{role}/remove-user', [RoleController::class, 'removeUserRole'])->name('roles.removeUserRole');
 });

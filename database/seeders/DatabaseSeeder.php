@@ -16,6 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Seed roles first
+        $this->call([
+            RoleSeeder::class,
+        ]);
+
         // User::factory(10)->create();
 
         foreach ([
@@ -44,6 +49,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
             'is_admin' => true,
+            'branch_id' => 1,
         ]);
     }
 }

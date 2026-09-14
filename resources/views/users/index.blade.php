@@ -23,7 +23,13 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->branch?->name ?: '-' }}</td>
-                                <td><span class="badge {{ $user->is_admin ? 'bg-primary' : 'bg-secondary' }}">{{ $user->is_admin ? 'Administrator' : 'User' }}</span></td>
+                                <td>
+                                    @if ($user->roles()->exists())
+                                        <span class="badge bg-primary">{{ $user->roles()->first()?->name }}</span>
+                                    @else
+                                        <span class="badge bg-secondary">No Role</span>
+                                    @endif
+                                </td>
                                 <td>{{ $user->created_at?->format('d M Y') }}</td>
                                 <td class="text-end">
                                     <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-primary" title="Edit user"><i class="bi bi-pencil-square"></i></a>

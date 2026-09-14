@@ -34,6 +34,14 @@ return new class extends Migration
 
     public function down(): void
     {
+        // Drop foreign keys first before dropping indexes
+        foreach (['classes', 'sections', 'users'] as $tableName) {
+            Schema::table($tableName, function (Blueprint $table) {
+                $table->dropForeign(['branch_id']);
+            });
+        }
+
+        // Then drop the composite unique indexes
         Schema::table('sections', function (Blueprint $table) {
             $table->dropUnique('sections_branch_id_name_unique');
             $table->unique('name');
@@ -44,9 +52,9 @@ return new class extends Migration
             $table->unique('name');
         });
 
+        // Finally drop the branch_id columns
         foreach (['classes', 'sections', 'users'] as $tableName) {
             Schema::table($tableName, function (Blueprint $table) {
-                $table->dropForeign(['branch_id']);
                 $table->dropColumn('branch_id');
             });
         }
