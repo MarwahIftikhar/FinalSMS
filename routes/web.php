@@ -35,13 +35,19 @@ Route::middleware('auth')->group(function () {
     Route::resource('sections', SectionController::class)
         ->parameters(['sections' => 'section']);
     Route::post('/branch/switch', [BranchController::class, 'switch'])
-        ->middleware('auth')
+        ->middleware('role:super_admin')
         ->name('branches.switch');
     Route::resource('branches', BranchController::class);
 
+    // Administration modules: super admin only
     Route::resource('users', UserController::class);
 
     Route::resource('roles', RoleController::class);
-    Route::post('/roles/{role}/assign-user', [RoleController::class, 'assignUserRole'])->name('roles.assignUserRole');
-    Route::post('/roles/{role}/remove-user', [RoleController::class, 'removeUserRole'])->name('roles.removeUserRole');
+    
+    Route::post('/roles/{role}/assign-user', [RoleController::class, 'assignUserRole'])
+        ->middleware('role:super_admin')
+        ->name('roles.assignUserRole');
+    Route::post('/roles/{role}/remove-user', [RoleController::class, 'removeUserRole'])
+        ->middleware('role:super_admin')
+        ->name('roles.removeUserRole');
 });

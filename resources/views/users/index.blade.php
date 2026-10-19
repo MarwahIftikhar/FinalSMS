@@ -24,8 +24,8 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->branch?->name ?: '-' }}</td>
                                 <td>
-                                    @if ($user->roles()->exists())
-                                        <span class="badge bg-primary">{{ $user->roles()->first()?->name }}</span>
+                                    @if ($user->roles->isNotEmpty())
+                                        <span class="badge bg-primary">{{ \Illuminate\Support\Str::headline($user->roles->first()->name) }}</span>
                                     @else
                                         <span class="badge bg-secondary">No Role</span>
                                     @endif

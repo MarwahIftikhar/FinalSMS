@@ -14,30 +14,39 @@
 
         <ul class="navbar-nav ms-auto">
             @auth
-                <li class="nav-item dropdown me-lg-2">
-                    <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" data-bs-toggle="dropdown" aria-expanded="false" title="Branches">
-                        <i class="bi bi-diagram-3-fill"></i>
-                        <span class="d-none d-lg-inline">Branches: {{ $activeBranch?->name ?? 'No branch' }}</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        @if (auth()->user()->is_admin)
+                @if (auth()->user()->isSuperAdmin())
+                    {{-- Branch switcher: super admin only --}}
+                    <li class="nav-item dropdown me-lg-2">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" data-bs-toggle="dropdown" aria-expanded="false" title="Branches">
+                            <i class="bi bi-diagram-3-fill"></i>
+                            <span class="d-none d-lg-inline">Branches: {{ $activeBranch?->name ?? 'No branch' }}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item fw-semibold text-primary" href="{{ route('branches.create') }}"><i class="bi bi-plus-lg me-1"></i> Add Branch</a></li>
                             <li><hr class="dropdown-divider"></li>
-                        @endif
-                        <li><h6 class="dropdown-header">Select Branch</h6></li>
-                        @forelse ($availableBranches as $branch)
-                            <li>
-                                <form method="POST" action="{{ route('branches.switch') }}">
-                                    @csrf
-                                    <input type="hidden" name="branch_id" value="{{ $branch->id }}">
-                                    <button type="submit" class="dropdown-item {{ $activeBranch?->id === $branch->id ? 'active' : '' }}">{{ $branch->name }}<small class="d-block text-muted">{{ $branch->location }}</small></button>
-                                </form>
-                            </li>
-                        @empty
-                            <li><span class="dropdown-item-text">No active branches</span></li>
-                        @endforelse
-                    </ul>
-                </li>
+                            <li><h6 class="dropdown-header">Select Branch</h6></li>
+                            @forelse ($availableBranches as $branch)
+                                <li>
+                                    <form method="POST" action="{{ route('branches.switch') }}">
+                                        @csrf
+                                        <input type="hidden" name="branch_id" value="{{ $branch->id }}">
+                                        <button type="submit" class="dropdown-item {{ $activeBranch?->id === $branch->id ? 'active' : '' }}">{{ $branch->name }}<small class="d-block text-muted">{{ $branch->location }}</small></button>
+                                    </form>
+                                </li>
+                            @empty
+                                <li><span class="dropdown-item-text">No active branches</span></li>
+                            @endforelse
+                        </ul>
+                    </li>
+                @else
+                    {{-- Everyone else only sees their current branch --}}
+                    <li class="nav-item d-none d-md-block me-lg-2">
+                        <span class="nav-link d-flex align-items-center gap-1" title="Your branch">
+                            <i class="bi bi-diagram-3-fill"></i>
+                            <span>Branch: {{ $activeBranch?->name ?? 'No branch' }}</span>
+                        </span>
+                    </li>
+                @endif
             @endauth
             <li class="nav-item d-flex align-items-center me-lg-2"><button type="button" data-adminlte-search aria-label="Search" class="adminlte-search-trigger btn btn-sm border rounded-pill d-flex align-items-center gap-2 px-2 px-lg-3 text-body-secondary"><i class="bi bi-search" aria-hidden="true"></i><span class="d-none d-lg-inline">Search…</span></button></li>
             @include('adminlte::partials.navbar-messages')

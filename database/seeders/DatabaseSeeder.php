@@ -45,11 +45,14 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
             'is_admin' => true,
             'branch_id' => 1,
         ]);
+
+        // Fresh installs: make the initial user a super admin
+        $user->assignRole('super_admin');
     }
 }

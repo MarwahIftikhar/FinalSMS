@@ -331,30 +331,35 @@ return [
 
         [
             'header' => 'ADMINISTRATION',
+            'requires' => fn () => auth()->check() && auth()->user()->isSuperAdmin(),
         ],
 
         [
             'text' => 'Users',
             'url' => 'users',
             'icon' => 'bi bi-people-fill',
+            'requires' => fn () => auth()->check() && auth()->user()->isSuperAdmin(),
         ],
 
         [
             'text' => 'Roles',
             'url' => 'roles',
             'icon' => 'bi bi-shield-check',
+            'requires' => fn () => auth()->check() && auth()->user()->isSuperAdmin(),
         ],
 
         [
             'text' => 'Branches',
             'url' => 'branches',
             'icon' => 'bi bi-diagram-3-fill',
+            'requires' => fn () => auth()->check() && auth()->user()->isSuperAdmin(),
         ],
 
         [
             'text' => 'Settings',
             'url' => 'settings',
             'icon' => 'bi bi-gear-fill',
+            'requires' => fn () => auth()->check() && auth()->user()->isSuperAdmin(),
         ],
     ],
 

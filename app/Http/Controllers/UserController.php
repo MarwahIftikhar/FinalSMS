@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index(): View
     {
         return view('users.index', [
-            'users' => User::with('branch')->latest()->get(),
+            'users' => User::with(['branch', 'roles'])->latest()->get(),
         ]);
     }
 
@@ -47,7 +47,19 @@ class UserController extends Controller
 
     public function show(User $user): View
     {
+        $user->load(['branch', 'roles']);
+
         return view('users.show', compact('user'));
+    }
+
+    public function edit(User $user): View
+    {
+        return view('users.edit', [
+            'user' => $user,
+            'branches' => Branch::all(),
+            'roles' => Role::where('guard_name', 'web')->get(),
+            'userRole' => $user->roles->first(),
+        ]);
     }
 
     public function update(Request $request, User $user): RedirectResponse

@@ -199,6 +199,45 @@
             color: #cbd5e1;
         }
 
+        .form-group select {
+            width: 100%;
+            padding: 12px 40px 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+            color: #172554;
+            cursor: pointer;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: #2563eb;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .branch-hint {
+            display: block;
+            margin-top: 6px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .change-email {
+            display: block;
+            margin: -10px 0 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .change-email:hover {
+            color: #172554;
+        }
+
         .form-group i {
             position: absolute;
             right: 12px;
@@ -332,39 +371,78 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('login.store') }}">
-                @csrf
+            @if (!request()->query('email'))
+                {{-- Step 1: email only — Continue reloads the page with ?email= --}}
+                <form method="GET" action="{{ route('login') }}">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            placeholder="Enter your email"
+                            required
+                            autofocus
+                        >
+                        <i class="bi bi-envelope"></i>
+                    </div>
 
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input 
-                        id="email" 
-                        type="email" 
-                        name="email" 
-                        value="{{ old('email') }}" 
-                        placeholder="Enter your email"
-                        required 
-                        autofocus
-                    >
-                    <i class="bi bi-envelope"></i>
-                </div>
+                    <button type="submit" class="login-button">
+                        <i class="bi bi-arrow-right me-2"></i> Continue
+                    </button>
+                </form>
+            @else
+                {{-- Step 2: password (plus branch choice for super admin) --}}
+                <form method="POST" action="{{ route('login.store') }}">
+                    @csrf
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input 
-                        id="password" 
-                        type="password" 
-                        name="password" 
-                        placeholder="Enter your password"
-                        required
-                    >
-                    <i class="bi bi-lock"></i>
-                </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            value="{{ old('email', request()->query('email')) }}"
+                            required
+                        >
+                        <i class="bi bi-envelope"></i>
+                    </div>
 
-                <button type="submit" class="login-button">
-                    <i class="bi bi-box-arrow-in-right me-2"></i> Sign In
-                </button>
-            </form>
+                    <a href="{{ route('login') }}" class="change-email">Use a different email</a>
+
+                    @if ($isSuperAdmin)
+                        {{-- Branch select: shown ONLY to super admin --}}
+                        <div class="form-group">
+                            <label for="branch_id">Branch</label>
+                            <select id="branch_id" name="branch_id" class="branch-select">
+                                <option value="">Default branch</option>
+                                @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}">{{ $branch->name }} &mdash; {{ $branch->location }}</option>
+                                @endforeach
+                            </select>
+                            <i class="bi bi-buildings"></i>
+                            <small class="branch-hint">Super admin only &mdash; choose which branch to open.</small>
+                        </div>
+                    @endif
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+                        <i class="bi bi-lock"></i>
+                    </div>
+
+                    <button type="submit" class="login-button">
+                        <i class="bi bi-box-arrow-in-right me-2"></i> Sign In
+                    </button>
+                </form>
+            @endif
 
             <div class="login-footer">
                 <p style="margin: 0;">

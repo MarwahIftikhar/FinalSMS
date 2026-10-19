@@ -8,21 +8,38 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Branch;
 use Illuminate\View\View;
 
 class AuthController extends Controller
 {
-    public function create(): View
+    public function create(Request $request): View
     {
-        return view('auth.login');
+        $email = $request->query('email');
+        $user = $email ? User::where('email', $email)->first() : null;
+
+        $isSuperAdmin = (bool) ($user && $user->isSuperAdmin());
+        $branches = $isSuperAdmin
+            ? Branch::where('status', true)->orderBy('name')->get()
+            : collect();
+
+        return view('auth.login', compact('isSuperAdmin', 'branches'));
     }
 
     public function store(Request $request): RedirectResponse
     {
-        $credentials = $request->validate([
+        $validated = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'string'],
+            'branch_id' => ['nullable', 'integer', 'exists:branches,id'],
         ]);
+
+        // branch_id is NOT a credential — keep it out of the auth query.
+        $branchId = $validated['branch_id'] ?? null;
+        $credentials = [
+            'email' => $validated['email'],
+            'password' => $validated['password'],
+        ];
 
         // Debug logging
         Log::info('Login attempt', ['email' => $credentials['email']]);
@@ -49,6 +66,17 @@ class AuthController extends Controller
 
         Log::info('Authentication successful', ['email' => $credentials['email']]);
         $request->session()->regenerate();
+
+        // Only a super admin may choose the login branch (enforced server-side,
+        // the select is hidden in the UI for everyone else).
+        $user = Auth::user();
+    if ($user instanceof User && $user->isSuperAdmin() && $branchId) {
+            $branchIsActive = Branch::where('id', $branchId)->where('status', true)->exists();
+
+            if ($branchIsActive) {
+                $request->session()->put('active_branch_id', (int) $branchId);
+            }
+        }
 
         return redirect()->intended('/');
     }
